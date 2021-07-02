@@ -1,0 +1,31 @@
+package part3.ex5.추상화.copy;
+
+import java.util.Scanner;
+
+public class Program {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		ExamConsole console = new ExamConsole();
+		
+		종료:
+	 		while (true) {
+	 			switch(console.inputMenu()) {
+		 			case 1: 
+		 				console.input(); 
+		 				break;
+		 			case 2:  
+		 				console.print();
+		 				break;
+		 			case 3:
+		 				console.quit();
+		 				break 종료;
+		 			default:
+		 				console.menuError();
+	 			}
+	 		}
+	}
+	
+	
+
+}

@@ -1,0 +1,126 @@
+package part3.ex1.캡슐화;
+
+import java.util.Scanner;
+
+public class ListAppliedProgram {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		ExamList List = new ExamList();
+		List.current = 0;
+		List.exams = new Exam[3];
+		
+		종료:
+	 		while (true) {
+	 			switch(inputMenu()) {
+		 			case 1: 
+		 				inputList(List);
+		 				break;
+		 			case 2:  
+		 				System.out.println("전체 출력 - 1 2개 출력 - 2 ");
+		 				int answer = scan.nextInt();
+		 				if (answer == 1) { 
+		 					printList(List);
+		 				} else {
+		 					printList(List,3);
+		 				}
+		 				
+		 				break;
+		 			case 3:
+		 				System.out.println("프로그램을 종료합니다.");
+		 				break 종료; //switch뿐만 아니라 while 루프까지 탈출
+		 			default:
+		 				System.out.println( "잘못된 입력입니다. 1~3만 입력 가능.");
+	 			}
+	 		}
+	}
+
+	private static void printList(ExamList examList) {
+		printList(examList, examList.current); // 유지 보수 용이성을 위해서 더 큰 기능을 하는 오버로드 함수를호출한다. 코드의 집중화.
+	}
+	private static void printList(ExamList examList, int size) {
+		Exam[] exams = examList.exams;
+		System.out.println("⎧⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎫");	
+		System.out.println("⎪    성적 출력      ⎪");  
+		System.out.println("⎪                 ⎪");
+		System.out.println("⎩⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎭");
+		for (int i =0 ; i<size;i++) {
+			int kor = exams[i].kor;
+			int eng = exams[i].eng; // 중복되는 것을 간단하게 만들기 위해 해당 영역에서만 임시 변수 사용.
+			int math = exams[i].math;
+			System.out.printf("   학생 %d 성적 출력\n",i+1);
+			System.out.printf("Korean : %d\nEnglish : %d\nMath : %d\n", kor,eng,math);
+			int total = kor+math+eng;
+	 		float avg = (float)(total / 3.0);
+	 		System.out.printf("\n총점 : %3d\n", total);
+			System.out.printf("평균 : %6.2f\n", avg);
+			System.out.println("⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽");
+		}
+	}
+
+	private static void inputList(ExamList list) {
+		int kor,eng,math;
+		int size = list.current;
+		Exam[] exams = list.exams;
+		Scanner scan = new Scanner(System.in);
+		System.out.println("⎧⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎫");	
+		System.out.println("⎪    성적 입력      ⎪");  
+		System.out.println("⎪                 ⎪");
+		System.out.println("⎩⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎭");
+		
+			do {
+				System.out.printf("학생%d 국어 성적 입력 :",size+1);
+				kor = scan.nextInt();
+				if (kor>100 || kor<0) {
+					System.out.println("입력 범위 초과");
+			}
+			} while (kor>100 || kor<0);
+			
+			do {
+				System.out.printf("학생%d 영어 성적 입력 :",size+1);
+				eng = scan.nextInt();
+				if (eng>100 || eng<0) {
+					System.out.println("입력 범위 초과");
+			}
+			} while (eng>100 || eng<0);
+			
+			do {
+				System.out.printf("학생%d 수학 성적 입력 :",size+1);
+				math = scan.nextInt();
+				if (math>100 || math<0) {
+					System.out.println("입력 범위 초과");
+			}
+			} while (math>100 || math<0);
+			
+		Exam exam = new Exam();
+		exam.kor=kor;
+		exam.eng=eng;
+		exam.math=math;
+		
+		if(exams.length == size) { // 공간 늘리기 작업 3단위.
+			Exam[] tempExams = new Exam[size+3];
+			for (int i=0; i<size;i++) {
+				tempExams[i] = exams[i];
+			}
+			exams = tempExams; //참조하지 않는 값 기존의 exams는 garbage화.
+		}	
+		exams[size] = exam;
+		list.exams = exams;
+		list.current++;
+		System.out.println("⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽");
+		
+	}
+	static int inputMenu() {
+ 		Scanner scan =  new Scanner(System.in);  
+ 		System.out.println("⎧⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎫");	
+		System.out.println("⎪    \"메인 메뉴\"    ⎪");  
+		System.out.println("⎪                 ⎪");
+		System.out.println("⎩⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎭");
+		System.out.println(" 1. 성적 입력");
+		System.out.println(" 2. 성적 출력");
+		System.out.println(" 3. 종료");
+		System.out.print(" 선택 > ");
+		return scan.nextInt();
+ 	}
+
+}

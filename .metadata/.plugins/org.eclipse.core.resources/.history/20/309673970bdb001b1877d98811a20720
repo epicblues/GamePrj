@@ -1,0 +1,25 @@
+package part3.ex5.추상화;
+
+public class NewlecExamConsole extends ExamConsole{
+
+	@Override
+	protected Exam makeExam() {
+		return new NewlecExam();
+	}
+
+	@Override
+	public void print() {
+		
+	}
+	
+	public void print(int size) {
+		
+	}
+
+	@Override
+	protected ExamList makeList() {
+		return new NewlecExamList();
+	}
+
+	
+}

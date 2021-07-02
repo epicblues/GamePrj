@@ -1,0 +1,6 @@
+import part3.ex4.UI코드분류하기.Exam;
+
+public class NewlecExam extends Exam {
+	private int com;
+	
+}

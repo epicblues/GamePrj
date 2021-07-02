@@ -1,0 +1,88 @@
+ package part2.ex1.성적입력부분나누기;
+
+ import java.util.Scanner; // 매번 java.util.Scanner라 입력하는 것을 피하기 위해 사
+
+ public class StructuredProgram {
+	 
+	static int[][] kors = new int[3][3];
+	
+ 	public static void main(String[] args) {
+ 		Scanner scan =  new Scanner(System.in);  // 굳이 공유할 필요가 없는 것은 전역화 시키지 말자.
+ 		
+ 		종료:
+ 		while (true) {
+ 			switch(메뉴입력()) {
+	 			case 1: 
+	 				성적입력();
+	 				break;
+	 			case 2: 
+	 				성적출력();
+	 				break;
+	 			case 3:
+	 				System.out.println("프로그램을 종료합니다.");
+	 				break 종료; //switch뿐만 아니라 while 루프까지 탈출
+	 			default:
+	 				System.out.println("잘못된 입력입니다. 1~3만 입력 가능.");
+ 			}
+ 		}
+ 	}
+ 	static int 메뉴입력() {
+ 		Scanner scan =  new Scanner(System.in);  
+ 		System.out.println("⎧⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎫");	
+		System.out.println("⎪    \"메인 메뉴\"    ⎪");  
+		System.out.println("⎪                 ⎪");
+		System.out.println("⎩⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎭");
+		System.out.println(" 1. 성적 입력");
+		System.out.println(" 2. 성적 출력");
+		System.out.println(" 3. 종료");
+		System.out.print(" 선택 > ");
+		return scan.nextInt();
+ 	}
+ 	static void 성적출력() {
+ 		int total = 0;
+ 		float avg = 0;
+ 		for(int j=0; j<3; j++) {
+				System.out.println("⎧⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎫");	
+	 			System.out.printf("⎪  \"%d학년 성적 출력\"  ⎪\n", j+1);  
+	 			System.out.println("⎪                 ⎪");
+	 			System.out.println("⎩⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎭");
+	 			
+				for (int i = 0; i < 3; i++) {
+			 		System.out.printf("%d학년 국어%d : %3d\n",j+1,i+1,kors[j][i]);
+			 		total +=kors[j][i];
+		 		}
+				
+				avg =(float)(total / 3.0); 
+
+				System.out.printf("총점 : %3d\n", total);
+	 			System.out.printf("평균 : %6.2f\n", avg);
+	 			System.out.println("⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽");
+	 			total = 0;
+			}
+			
+			
+ 	}
+ 	static void 성적입력() {
+
+ 		Scanner scan =  new Scanner(System.in); 
+ 		
+			System.out.println("⎧⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎫");	
+			System.out.println("⎪    \"성적 입력\"    ⎪");  
+			System.out.println("⎪                 ⎪");
+			System.out.println("⎩⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎭");
+			
+ 		for(int j=0; j<3; j++) {
+ 			for (int i=0; i < 3; i++) {
+	 			do {
+	 				System.out.printf("%d학년 국어%d : ",j+1,i+1);
+	 				kors[j][i] = scan.nextInt(); 
+	 				
+	 				if (kors[j][i] < 0 || 100 < kors[j][i]) {
+	 					System.out.println("성적 범위(0~100)를 벗어났습니다.");
+	 				}
+	 			} while (kors[j][i] < 0 || 100 < kors[j][i] ); // 괄호 안이 true 면 다시 do로 넘어감.
+ 			}
+ 		}
+			
+ 	}
+ }

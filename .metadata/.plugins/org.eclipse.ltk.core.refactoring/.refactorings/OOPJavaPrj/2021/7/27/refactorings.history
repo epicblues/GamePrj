@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Encapsulate field &apos;NewlecExam.com&apos; in &apos;NewlecExam&apos;&#x0A;- Original project: &apos;OOPJavaPrj&apos;&#x0A;- Original element: &apos;NewlecExam.com&apos;&#x0A;- Getter method name: &apos;getCom&apos;&#x0A;- Setter method name: &apos;setCom&apos;&#x0A;- Field visibility: &apos;public&apos;&#x0A;- Use getter and setter methods in declaring type" comments="false" declaring="true" description="Encapsulate field &apos;com&apos;" flags="589830" getter="getCom" id="org.eclipse.jdt.ui.self.encapsulate" input="/src&lt;{NewlecExam.java[NewlecExam^com" insertion="-1" setter="setCom" stamp="1625181291958" version="1.0" visibility="1"/>
+</session>

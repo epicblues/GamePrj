@@ -1,0 +1,67 @@
+package part3.ex5.추상화;
+
+import java.util.Scanner;
+
+public class NewlecExamConsole extends ExamConsole{
+
+	@Override
+	protected NewlecExam makeExam() {
+		return new NewlecExam();
+	}
+
+	@Override
+	public void print() {
+		onPrint();
+	}
+	
+	public void print(int size) {
+		System.out.println("⎧⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎫");	
+		System.out.println("⎪    성적 출력      ⎪");  
+		System.out.println("⎪                 ⎪");
+		System.out.println("⎩⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎭");
+		for (int i =0; i < size; i ++) {
+			NewlecExam exam = list.get(i); 
+			int kor = exam.getKor();
+			int eng = exam.getEng(); // 중복되는 것을 간단하게 만들기 위해 해당 영역에서만 임시 변수 사용.
+			int math = exam.getMath();
+			int com = exam.getCom();
+			System.out.printf("   학생 %d 성적 출력\n",i+1);
+			System.out.printf("Korean : %d\nEnglish : %d\nMath : %d\nCom : %d\n", kor,eng,math,com);
+	 		System.out.printf("\n총점 : %3d\n", exam.total());
+			System.out.printf("평균 : %6.2f\n", exam.avg());
+			System.out.println("⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽");
+		}
+	}
+
+	@Override
+	protected ExamList makeList() {
+		return new NewlecExamList();
+	}
+
+	@Override
+	public void input() {
+		Scanner scan = new Scanner(System.in);
+		int size = list.getCurrent();
+		int kor=0;
+		int eng=0;
+		int math=0;
+		int com = 0;
+
+		onInput(kor,eng,math,size);
+		NewlecExam exam = makeExam();
+		do {
+			System.out.printf("학생%d 컴퓨터 성적 입력 :",size+1);
+			com = scan.nextInt();
+			if (math>100 || math<0) {
+				System.out.println("입력 범위 초과");
+		}
+		} while (math>100 || math<0);
+		exam.setKor(kor);
+		exam.setEng(eng);
+		exam.setMath(math);
+		exam.setCom(com);
+		list.add(exam);
+		System.out.println("⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽");
+	}
+
+}

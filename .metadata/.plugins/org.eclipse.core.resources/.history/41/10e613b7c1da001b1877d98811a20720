@@ -1,0 +1,14 @@
+
+
+public class Program {
+	
+	//1. 컴파일 -> Exam.class
+	//2. 압축 -> Exam.zip
+	//3. jar -> Exam.jar (java archive) 
+	
+	public static void main(String[] args) {
+		NewlecExam exam = new NewlecExam();
+		System.out.println(exam.total());
+	}
+
+}

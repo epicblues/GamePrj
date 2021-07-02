@@ -1,0 +1,22 @@
+package part2.ex3.데이터구조화;
+
+public class Program_functionPractice {
+
+	public static void main(String[] args) {
+		int[] lotto = new int[3];
+		print(3,5.3f,lotto);
+		
+		char[][] names = new char[3][10];
+		double cnt = print2(true,4.0,names);
+
+	}
+
+	private static void print(int i, float f, int[] lotto) {
+		// TODO Auto-generated method stub
+		
+	}
+	private static double print2(boolean trueFalse,double d, char[][] names) {
+		return 2.2;
+		
+	}
+}

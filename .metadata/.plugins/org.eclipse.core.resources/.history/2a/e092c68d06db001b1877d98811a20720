@@ -1,0 +1,11 @@
+package part3.ex5.추상화;
+
+public class NewlecExamList extends ExamList{
+
+	@Override
+	protected Exam[] makeExams(int size) {
+			return new NewlecExam[size];
+		
+	}
+
+}

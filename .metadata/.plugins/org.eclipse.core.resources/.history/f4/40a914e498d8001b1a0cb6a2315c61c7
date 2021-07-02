@@ -1,0 +1,20 @@
+package ex19.array_practice;
+
+import java.util.Scanner; // 매번 java.util.Scanner라 입력하는 것을 피하기 위해 사
+import java.util.Random;
+
+public class Program5 {
+	public static void main(String[] args) {
+		int[] lotto = new int[6];
+		Random rand = new Random(10);	
+		
+		for(int i=0;i<6;i++) {
+			lotto[i] = rand.nextInt(10);
+		}
+		
+		for(int i=0;i<6;i++) {
+			System.out.printf("%d",lotto[i]);
+		}
+		
+	}
+	}

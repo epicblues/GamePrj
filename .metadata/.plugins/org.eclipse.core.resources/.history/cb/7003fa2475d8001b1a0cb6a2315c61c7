@@ -1,0 +1,19 @@
+package ex18.omok;
+
+import java.util.Scanner; // 매번 java.util.Scanner라 입력하는 것을 피하기 위해 사
+
+public class Program {
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		
+		for (int y = 1; y<=10;y++) {
+			for (int x = 1; x<=10; x++) {
+				System.out.printf("%c", '┼');
+			}
+			System.out.println();
+		}
+		
+		
+		
+		}
+	}

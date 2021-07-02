@@ -1,0 +1,15 @@
+package ex1.io;
+
+public class Program {
+
+	public static void main(String[] args) {
+		
+		System.out.write('A' + 1);
+		System.out.write('B' + 2);
+		System.out.write('C' + 3);
+		System.out.write('D' + 4);
+
+		System.out.flush();
+	}
+
+}

@@ -1,0 +1,78 @@
+package part3.ex4.UI코드분류하기;
+
+import java.util.Scanner;
+
+public class ExamList {
+
+	private Exam[] exams;
+    private int current;
+	
+	public Exam[] getExams() {
+		return exams;
+	}
+
+	public void setExams(Exam[] exams) {
+		this.exams = exams;
+	}
+
+	public int getCurrent() {
+		return current;
+	}
+
+	public void setCurrent(int current) {
+		this.current = current;
+	}
+
+	public ExamList() { // 기본 생성자. 없으면 변수 입력 없이 호출객체 생성 불가능.
+		this(3); //여기서 this는 생성자를 통해 방금 만들어진 객체. new ExamList
+	}
+	
+	public ExamList(int size) { // 생성자 overload
+		current = 0;
+		exams = new Exam[size];
+	}
+	
+	public void print() {
+		print(current); // 유지 보수 용이성을 위해서 더 큰 기능을 하는 오버로드 함수를호출한다. 코드의 집중화.
+	}
+	
+	public void print(int size) {
+		System.out.println("⎧⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎫");	
+		System.out.println("⎪    성적 출력      ⎪");  
+		System.out.println("⎪                 ⎪");
+		System.out.println("⎩⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎭");
+		
+		for (int i =0 ; i<size;i++) {
+			Exam exam = exams[i];
+			int kor = exam.getKor();
+			int eng = exam.getEng(); // 중복되는 것을 간단하게 만들기 위해 해당 영역에서만 임시 변수 사용.
+			int math = exam.getMath();
+			System.out.printf("   학생 %d 성적 출력\n",i+1);
+			System.out.printf("Korean : %d\nEnglish : %d\nMath : %d\n", kor,eng,math);
+	 		System.out.printf("\n총점 : %3d\n", exam.total());
+			System.out.printf("평균 : %6.2f\n", exam.avg());
+			System.out.println("⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽");
+		}
+	}
+
+	public void save() {
+		int kor,eng,math;
+		int size = current;
+		// 데이터 입력 과정.
+			
+		Exam exam = new Exam(kor,eng,math);
+		
+		if(exams.length == size) { // 공간 늘리기 작업 3단위.
+			Exam[] tempExams = new Exam[size+3];
+			for (int i=0; i<size;i++) {
+				tempExams[i] = exams[i];
+			}
+			exams = tempExams; //참조하지 않는 값 기존의 exams는 garbage화.
+		}	
+		exams[size] = exam;
+		current++;
+		System.out.println("⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽");
+		
+	}
+}
+
