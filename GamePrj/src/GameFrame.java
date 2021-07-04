@@ -5,7 +5,7 @@ import java.awt.event.WindowListener;
 
 import javax.swing.JOptionPane;
 
-import sun.tools.tree.ThisExpression;
+
 
 public class GameFrame extends Frame implements WindowListener{
 	
